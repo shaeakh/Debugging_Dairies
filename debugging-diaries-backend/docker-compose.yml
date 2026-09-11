@@ -1,0 +1,34 @@
+services:
+  api:
+    build:
+      context: .
+      target: production
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    restart: unless-stopped
+    depends_on:
+      - redis
+      - rabbitmq
+
+  redis:
+    image: redis:alpine
+    container_name: redis_cache
+    ports:
+      - '6379:6379'
+    restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq_broker
+    hostname: rabbitmq_server
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    restart: unless-stopped
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+volumes:
+  rabbitmq_data:

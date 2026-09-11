@@ -1,0 +1,196 @@
+�   .dockerignore
+�   .env
+�   .env.example
+�   .gitignore
+�   .prettierrc
+�   backendFilesList.txt
+�   docker-compose.yml
+�   Dockerfile
+�   eslint.config.ts
+�   nodemon.json
+�   package-lock.json
+�   package.json
+�   prisma.config.ts
+�   README.md
+�   tree.txt
+�   tsconfig.json
+�   vercel.json
+�   vitest.config.ts
+�   zcmds.txt
+�   ztree.txt
+�   
++---.github
+�   +---workflows
+�           deploy.yml
+�           
++---.husky
++---.vscode
++---coverage
++---dist
++---node_modules
++---prisma
+�   �   schema.prisma
+�   �   seed.ts
+�   �   
+�   +---migrations
+�       �   migration_lock.toml
+�       �   
+�       +---20260128124706_init
+�       �       migration.sql
+�       �       
+�       +---20260130044836_renamed_columns
+�       �       migration.sql
+�       �       
+�       +---20260130050125_auth
+�       �       migration.sql
+�       �       
+�       +---20260202113719_add_soft_delete_fields
+�       �       migration.sql
+�       �       
+�       +---20260205111216_add_temp_column
+�       �       migration.sql
+�       �       
+�       +---20260205111503_remove_old_column
+�       �       migration.sql
+�       �       
+�       +---20260212151139_story_table
+�       �       migration.sql
+�       �       
+�       +---20260212155915_story_modified
+�       �       migration.sql
+�       �       
+�       +---20260219084631_add_user_activation
+�       �       migration.sql
+�       �       
+�       +---20260223074441_category
+�       �       migration.sql
+�       �       
+�       +---20260223175645_add_story_summary
+�       �       migration.sql
+�       �       
+�       +---20260224112403_otp_added
+�       �       migration.sql
+�       �       
+�       +---20260224123242_temporary_password_add
+�       �       migration.sql
+�       �       
+�       +---20260225043523_make_temporary_password_optional
+�       �       migration.sql
+�       �       
+�       +---20260225074319_new_otp_table
+�       �       migration.sql
+�       �       
+�       +---20260517063306_add_voting_and_comments
+�               migration.sql
+�               
++---src
+    �   index.ts
+    �   
+    +---api-doc
+    �       swagger-output.json
+    �       swagger-output.ts
+    �       swagger.ts
+    �       
+    +---config
+    �       db.ts
+    �       rabbitmq.ts
+    �       redis.ts
+    �       
+    +---constants
+    �       aiPrompts.ts
+    �       allConstant.ts
+    �       configConstant.ts
+    �       envConstants.ts
+    �       httpConstants.ts
+    �       indexConstants.ts
+    �       messageConstants.ts
+    �       userConstants.ts
+    �       
+    +---controllers
+    �       authController.ts
+    �       categoryController.ts
+    �       commentController.ts
+    �       profileController.ts
+    �       searchController.ts
+    �       storyController.ts
+    �       userController.ts
+    �       voteController.ts
+    �       
+    +---dtos
+    �       authDTO.ts
+    �       categoryDTO.ts
+    �       commentDTO.ts
+    �       commonItemDTO.ts
+    �       profileDTO.ts
+    �       searchDTO.ts
+    �       storyDTO.ts
+    �       userDTO.ts
+    �       voteDTO.ts
+    �       
+    +---errors
+    �       baseErrorClass.ts
+    �       concreteErrors.ts
+    �       
+    +---middlewares
+    �       authenticateToken.ts
+    �       authorizeRoles.ts
+    �       errorHandler.ts
+    �       rateLimiter.ts
+    �       redisCache.ts
+    �       requestValidator.ts
+    �       
+    +---repositories
+    �       aiRepository.ts
+    �       authRepository.ts
+    �       categoryRepository.ts
+    �       commentRepository.ts
+    �       commentVoteRepository.ts
+    �       storyRepository.ts
+    �       userRepository.ts
+    �       voteRepository.ts
+    �       
+    +---routes
+    �       authRoute.ts
+    �       categoryRoute.ts
+    �       commentRoute.ts
+    �       profileRoute.ts
+    �       searchRoute.ts
+    �       storyRoute.ts
+    �       userRoute.ts
+    �       voteRoute.ts
+    �       
+    +---services
+    �       aiService.ts
+    �       authService.ts
+    �       categoryService.ts
+    �       commentService.ts
+    �       searchService.ts
+    �       storyService.ts
+    �       userService.ts
+    �       voteService.ts
+    �       
+    +---test
+    �   +---controllers    
+    �   +---services 
+    +---types
+    �       aiServiceTestTypes.ts
+    �       authControllerTestTypes.ts
+    �       authServiceTestTypes.ts
+    �       categoryControllerTestTypes.ts
+    �       categoryServiceTestTypes.ts
+    �       expressDefaultTypes.ts
+    �       profileControllerTestTypes.ts
+    �       searchControllerTestTypes.ts
+    �       searchServiceTestTypes.ts
+    �       storyControllerTestTypes.ts
+    �       storyServiceTestTypes.ts
+    �       userServiceTestTypes.ts
+    �       
+    +---utils
+    �       emailUtils.ts
+    �       endPoints.ts
+    �       responseHandler.ts
+    �       
+    +---workers
+            emailWorker.ts
+            

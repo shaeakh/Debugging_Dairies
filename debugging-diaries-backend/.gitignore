@@ -1,0 +1,12 @@
+dist/*
+!dist/.gitkeep
+
+node_modules/
+.env
+git_PR.md
+/generated/prisma
+/src/generated/prisma
+/src/test
+.qodo
+coverage/
+.vercel

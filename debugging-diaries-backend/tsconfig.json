@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    "paths": {
+      "@config/*": ["config/*"],
+      "@constants/*": ["constants/*"],
+      "@controllers/*": ["controllers/*"],
+      "@dtos/*": ["dtos/*"],
+      "@errors/*": ["errors/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@repositories/*": ["repositories/*"],
+      "@routes/*": ["routes/*"],
+      "@services/*": ["services/*"],
+      "@app-types/*": ["types/*"],
+      "@utils/*": ["utils/*"]
+    },
+    "module": "nodenext",
+    "target": "esnext",
+    "moduleResolution": "NodeNext",
+    "types": [],
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": false,
+    "allowImportingTsExtensions": false,
+    "noEmit": false,
+    "noImplicitAny": true,
+    "strict": true,
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "src/test/**/*", "**/*.test.ts", "**/*.spec.ts"]
+}

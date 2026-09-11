@@ -1,0 +1,115 @@
+Folder PATH listing for volume Shaeakh
+Volume serial number is F40B-3085
+a
+D:.
+�   .dockerignore
+�   .env.example
+�   .gitignore
+�   .prettierrc
+�   docker-compose.yml
+�   Dockerfile
+�   eslint.config.ts
+�   nodemon.json
+�   package.json
+�   prisma.config.ts
+�   tsconfig.json
+�   vercel.json
+�   vitest.config.ts
+�   
++---.husky
++---.vercel
+�       project.json
+�       README.txt
+�       
++---coverage
++---dist    
++---node_modules
++---prisma
+�   �   schema.prisma
+�   �   seed.ts
+�   �   
+�   +---migrations
++---src
+    �   index.ts
+    �   
+    +---api-doc
+    �       swagger-output.json
+    �       swagger-output.ts
+    �       swagger.ts
+    �       
+    +---config
+    �       db.ts
+    �       
+    +---constants
+    �       aiPrompts.ts
+    �       allConstant.ts
+    �       configConstant.ts
+    �       envConstants.ts
+    �       httpConstants.ts
+    �       indexConstants.ts
+    �       messageConstants.ts
+    �       userConstants.ts
+    �       
+    +---controllers
+    �       authController.ts
+    �       categoryController.ts
+    �       profileController.ts
+    �       searchController.ts
+    �       storyController.ts
+    �       userController.ts
+    �       
+    +---dtos
+    �       authDTO.ts
+    �       categoryDTO.ts
+    �       commonItemDTO.ts
+    �       profileDTO.ts
+    �       searchDTO.ts
+    �       storyDTO.ts
+    �       userDTO.ts
+    �       
+    +---errors
+    �       baseErrorClass.ts
+    �       concreteErrors.ts
+    �       
+    +---generated
+    �   +---prisma      
+    +---middlewares
+    �       authenticateToken.ts
+    �       authorizeRoles.ts
+    �       errorHandler.ts
+    �       rateLimiter.ts
+    �       requestValidator.ts
+    �       
+    +---repositories
+    �       aiRepository.ts
+    �       authRepository.ts
+    �       categoryRepository.ts
+    �       storyRepository.ts
+    �       userRepository.ts
+    �       
+    +---routes
+    �       authRoute.ts
+    �       categoryRoute.ts
+    �       profileRoute.ts
+    �       searchRoute.ts
+    �       storyRoute.ts
+    �       userRoute.ts
+    �       
+    +---services
+    �       aiService.ts
+    �       authService.ts
+    �       categoryService.ts
+    �       searchService.ts
+    �       storyService.ts
+    �       userService.ts
+    �       
+    +---test
+    �   +---controllers
+    �   +---services
+    �           
+    +---types
+    �       
+    +---utils
+            emailUtils.ts
+            responseHandler.ts
+            

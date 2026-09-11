@@ -1,0 +1,135 @@
+generator client {
+  provider      = "prisma-client-js"
+  url           = env("DIRECT_URL")
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum VoteType {
+  UPVOTE
+  DOWNVOTE
+}
+
+enum Otp_type {
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+}
+
+model User {
+  id         Int       @id @default(autoincrement())
+  username   String    @unique
+  name       String
+  email      String    @unique
+  join_date  DateTime  @default(now())
+  role       Role      @default(USER)
+  is_active  Boolean   @default(false)
+  is_deleted Boolean   @default(false)
+  deleted_at DateTime?
+
+  // Relations
+  auth         Auth?
+  stories      Story[]
+  otps         Otp[]
+  votes        Vote[]
+  comments     Comment[]
+  commentVotes CommentVote[]
+}
+
+model Auth {
+  id                              Int      @id @default(autoincrement())
+  userId                          Int      @unique
+  password                        String
+  password_last_modification_time DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Story {
+  id         Int       @id @default(autoincrement())
+  title      String
+  body       String    @db.Text
+  summary    String?   @db.Text
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  deleted_at DateTime?
+  is_deleted Boolean   @default(false)
+  userId     Int
+
+  // Relations
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  categories Category[]
+  votes      Vote[]
+  comments   Comment[]
+}
+
+model Category {
+  id      Int     @id @default(autoincrement())
+  name    String  @unique
+  stories Story[]
+}
+
+model Vote {
+  id      Int      @id @default(autoincrement())
+  type    VoteType
+  userId  Int
+  storyId Int
+
+  // Relations
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  story Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, storyId])
+}
+
+model Comment {
+  id         Int       @id @default(autoincrement())
+  body       String    @db.Text
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  is_deleted Boolean   @default(false)
+  deleted_at DateTime?
+  userId     Int
+  storyId    Int
+  parentId   Int?
+
+  // Relations
+  user    User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  story   Story         @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  parent  Comment?      @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies Comment[]     @relation("CommentReplies")
+  votes   CommentVote[]
+}
+
+model CommentVote {
+  id        Int      @id @default(autoincrement())
+  type      VoteType
+  userId    Int
+  commentId Int
+
+  // Relations
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comment Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, commentId])
+}
+
+model Otp {
+  id                 Int      @id @default(autoincrement())
+  userId             Int
+  code               String
+  temporary_password String?
+  type               Otp_type
+  expires_at         DateTime
+  created_at         DateTime @default(now())
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
