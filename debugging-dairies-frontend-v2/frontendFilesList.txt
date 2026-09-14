@@ -1,0 +1,123 @@
+D:.
+�   .env
+�   .env.example
+�   .gitignore
+�   .prettierignore
+�   .prettierrc
+�   components.json
+�   eslint.config.js
+�   frontendFilesList.txt
+�   index.html
+�   package-lock.json
+�   package.json
+�   README.md
+�   tsconfig.app.json
+�   tsconfig.json
+�   tsconfig.node.json
+�   vite.config.ts
+�   zcmds.txt
+�   ztree.txt
+�   
++---.husky
+�   �   pre-commit
+�   �   
+�   +---_
+�           .gitignore
+�           husky.sh
+�           
++---dist    
++---public
+�   +---assets
+�       +---images
+�               logo.png
+�               
++---src
+    �   App.tsx
+    �   index.css
+    �   main.tsx
+    �   
+    +---apis
+    �   �   axios.ts
+    �   �   
+    �   +---auth
+    �   �       authApi.ts
+    �   �       
+    �   +---story
+    �           storyApi.ts
+    �           
+    +---components
+    �   �   Layout.tsx
+    �   �   
+    �   +---auth
+    �   �       signInCard.tsx
+    �   �       signUpCard.tsx
+    �   �       
+    �   +---common
+    �   +---landing
+    �   �       CodePreviewBlock.tsx
+    �   �       Features.tsx
+    �   �       Footer.tsx
+    �   �       HeroSection.tsx
+    �   �       LandingNavBar.tsx
+    �   �       Toast.tsx
+    �   �       
+    �   +---layoutComponents
+    �   �       NavBar.tsx
+    �   �       Toast.tsx
+    �   �       
+    �   +---story
+    �   �       HeroSection.tsx
+    �   �       StoryCard.tsx
+    �   �       SummaryDialog.tsx
+    �   �       TrendingSidebar.tsx
+    �   �       
+    �   +---ui
+    �           button.tsx
+    �           dialog.tsx
+    �           
+    +---contexts
+    �       ToastContext.tsx
+    �       
+    +---hooks
+    �   +---auth
+    �   �       useSignIn.ts
+    �   �       useSignOut.ts
+    �   �       useSignUp.ts
+    �   �       
+    �   +---component
+    �   �       useToast.ts
+    �   �       
+    �   +---story
+    �           useFetchStories.ts
+    �           
+    +---lib
+    �       utils.ts
+    �       
+    +---pages
+    �       Auth.tsx
+    �       Home.tsx
+    �       Landing.tsx
+    �       Profile.tsx
+    �       Search.tsx
+    �       Settings.tsx
+    �       
+    +---providers
+    �       ToastProvider.tsx
+    �       
+    +---types
+    �   +---api
+    �   �       authTypes.ts
+    �   �       categoryTypes.ts
+    �   �       CommonTypes.ts
+    �   �       storyTypes.ts
+    �   �       userTypes.ts
+    �   �       
+    �   +---components
+    �           toastTypes.ts
+    �           
+    +---utils
+            endPoints.ts
+            envConstants.ts
+            localStorageUtils.ts
+            route.tsx
+            
