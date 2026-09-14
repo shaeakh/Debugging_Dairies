@@ -1,5 +1,5 @@
 {
-  "name": "debugging-dairies-frontend-v2",
+  "name": "debugging-diaries-frontend-v2",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,md}\"",
-    "prepare": "husky install"
+    "prepare": "husky install || true"
   },
   "dependencies": {
     "@fontsource-variable/oxanium": "^5.2.8",

@@ -1,10 +1,18 @@
-import { HttpConstants, MessageConstants } from '@constants/allConstant.js';
+import { HttpConstants, MessageConstants, EnvConstant } from '@constants/allConstant.js';
 import AuthService from '@services/authService.js';
 import ResponseHandler from '@utils/responseHandler.js';
-import type { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction, CookieOptions } from 'express';
 
 const HttpStatus = HttpConstants.statusCode;
 const Message = MessageConstants.responseMessage.authController;
+
+const isProduction = EnvConstant.NODE_ENV === 'production';
+const getCookieOptions = (): CookieOptions => ({
+  httpOnly: true,
+  secure: isProduction,
+  sameSite: isProduction ? 'none' : 'lax',
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+});
 
 export default class AuthController {
   private authService: AuthService;
@@ -17,12 +25,7 @@ export default class AuthController {
     try {
       const authToken = await this.authService.SignUp(req.validatedBody);
 
-      res.cookie('authToken', authToken, {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'none',
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-      });
+      res.cookie('authToken', authToken, getCookieOptions());
 
       ResponseHandler.send(res, HttpStatus.CREATED.code, {
         message: Message.userCreationSuccessfull,
@@ -37,12 +40,7 @@ export default class AuthController {
       const confirmToken = String(req.params.token);
       const authToken = await this.authService.ConfirmEmail(confirmToken);
 
-      res.cookie('authToken', authToken, {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'none',
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-      });
+      res.cookie('authToken', authToken, getCookieOptions());
       ResponseHandler.send(res, HttpStatus.OK.code, {
         message: Message.emailConfirmationSuccessfull,
       });
@@ -55,12 +53,7 @@ export default class AuthController {
     try {
       const { token, user } = await this.authService.SignIn(req.validatedBody);
 
-      res.cookie('authToken', token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'none',
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-      });
+      res.cookie('authToken', token, getCookieOptions());
       ResponseHandler.send(res, HttpStatus.OK.code, {
         message: Message.signInSuccessful,
         data: user,
@@ -90,7 +83,11 @@ export default class AuthController {
 
   SignOut = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      res.clearCookie('authToken');
+      res.clearCookie('authToken', {
+        httpOnly: true,
+        secure: isProduction,
+        sameSite: isProduction ? 'none' : 'lax',
+      });
       ResponseHandler.send(res, HttpStatus.OK.code, { message: Message.Logout });
     } catch (error) {
       next(error);

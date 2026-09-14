@@ -1,5 +1,5 @@
 {
-  "name": "debugging-dairies",
+  "name": "debugging-diaries",
   "version": "1.0.0",
   "description": "\"# debugging-diaries-backend\"",
   "main": "index.js",
@@ -17,7 +17,7 @@
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "prepare": "node -e \"if(process.env.NODE_ENV !== 'production') { require('child_process').execSync('husky', {stdio: 'inherit'}) }\"",
-    "dockers": "docker-compose up -d redis rabbitmq"
+    "dockers": "docker compose up -d redis rabbitmq"
   },
   "repository": {
     "type": "git",

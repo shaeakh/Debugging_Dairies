@@ -25,17 +25,33 @@ import CommentRoute from '@routes/commentRoute.js';
 
 const app = express();
 const server = http.createServer(app);
-// const allowedOrigins = [
-//   EnvConstant.FRONTEND_URL1,
-//   EnvConstant.FRONTEND_URL2,
-//   EnvConstant.FRONTEND_URL_TEST,
-// ].filter((origin): origin is string => Boolean(origin));
+const allowedOrigins = [
+  EnvConstant.FRONTEND_URL1,
+  EnvConstant.FRONTEND_URL2,
+  EnvConstant.FRONTEND_URL_TEST,
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://127.0.0.1:5173',
+  'http://127.0.0.1:3000',
+].filter((origin): origin is string => Boolean(origin));
 
 app.use(
   cors({
-    origin: '*',
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+
+      const normalizedOrigin = origin.replace(/\/$/, '');
+      const isAllowed = allowedOrigins.some(
+        (allowed) => allowed && allowed.replace(/\/$/, '') === normalizedOrigin,
+      );
+
+      if (isAllowed) {
+        return callback(null, true);
+      }
+      return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   }),
 );
