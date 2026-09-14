@@ -5,6 +5,9 @@ export default class EmailUtils {
   constructor() {}
 
   signUp = (user: AuthDTO.AuthPayload, token: string) => {
+    const baseUrl = (EnvConstant.BACKEND_URL || EnvConstant.FRONTEND_URL1 || 'https://debugging-diaries.vercel.app').replace(/\/$/, '');
+    const confirmLink = `${baseUrl}/api/auth/confirm-email/${token}`;
+
     const text = `
       Confirm Your Email
 
@@ -12,7 +15,7 @@ export default class EmailUtils {
 
       Thanks for signing up! Please click the link below to verify your account:
 
-      ${EnvConstant.BACKEND_URL}/api/auth/confirm-email/${token}
+      ${confirmLink}
 
       If you did not request this, please ignore this email.
       © 2026 Debugging Diaries. All rights reserved.
@@ -47,7 +50,7 @@ export default class EmailUtils {
                       <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:24px;">
                         <tr>
                           <td align="center">
-                            <a href="${EnvConstant.BACKEND_URL}/api/auth/confirm-email/${token}"
+                            <a href="${confirmLink}"
                               style="display:inline-block; background-color:#86efac; color:#1f4731;
                                      padding:12px 28px; text-decoration:none; border-radius:8px;
                                      font-weight:600; font-size:14px; font-family:'Open Sans',Arial,sans-serif;">
@@ -75,6 +78,9 @@ export default class EmailUtils {
   };
 
   confirmEmail = (user: AuthDTO.AuthPayload) => {
+    const frontendUrl = (EnvConstant.FRONTEND_URL1 || 'https://debugging-diaries.vercel.app').replace(/\/$/, '');
+    const loginLink = `${frontendUrl}/auth`;
+
     const text = `
       Welcome to Debugging Diaries
 
@@ -83,7 +89,7 @@ export default class EmailUtils {
       You're all set!
       You can now log in and start using Debugging Diaries.
 
-      Go to Sign In: ${EnvConstant.BACKEND_URL}/api/auth/login
+      Go to Sign In: ${loginLink}
 
       © 2026 Debugging Diaries. All rights reserved.
     `;
@@ -118,7 +124,7 @@ export default class EmailUtils {
                       <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:24px;">
                         <tr>
                           <td align="center">
-                            <a href="${EnvConstant.BACKEND_URL}/api/auth/login"
+                            <a href="${loginLink}"
                               style="display:inline-block; background-color:#86efac; color:#1f4731;
                                      padding:12px 28px; text-decoration:none; border-radius:8px;
                                      font-weight:600; font-size:14px; font-family:'Open Sans',Arial,sans-serif;">

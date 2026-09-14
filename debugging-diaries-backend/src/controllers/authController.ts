@@ -41,10 +41,20 @@ export default class AuthController {
       const authToken = await this.authService.ConfirmEmail(confirmToken);
 
       res.cookie('authToken', authToken, getCookieOptions());
+
+      const frontendUrl = (EnvConstant.FRONTEND_URL1 || 'https://debugging-diaries.vercel.app').replace(/\/$/, '');
+      if (req.accepts('html')) {
+        return res.redirect(`${frontendUrl}/auth?verified=true`);
+      }
+
       ResponseHandler.send(res, HttpStatus.OK.code, {
         message: Message.emailConfirmationSuccessfull,
       });
     } catch (error) {
+      const frontendUrl = (EnvConstant.FRONTEND_URL1 || 'https://debugging-diaries.vercel.app').replace(/\/$/, '');
+      if (req.accepts('html')) {
+        return res.redirect(`${frontendUrl}/auth?error=confirmation_failed`);
+      }
       next(error);
     }
   };
